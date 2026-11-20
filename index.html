@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="icon.png">
+<title>سند للفوترة الإلكترونية</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="سند: فواتير إلكترونية متوافقة مع هيئة الزكاة والضريبة والجمارك (ZATCA) لمتاجر WooCommerce. المرحلة الأولى مجانًا، والربط والتكامل في سند Pro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Noto+Kufi+Arabic:wght@600;800&display=swap">
+<style>
+/* Layout: a ledger page. Ink-green bands carry the argument, paper bands carry the evidence (the real invoice, the QR fields, the price). */
+:root {
+  --paper: #fbfaf6;
+  --paper-2: #f2efe6;
+  --ink: #13261e;
+  --ink-soft: #4a5c53;
+  --rule: #ddd8ca;
+  --green: #0a5c3e;
+  --green-deep: #08402c;
+  --gold: #c9a245;
+  --gold-soft: #f3e8c9;
+  --on-green: #f4f1e6;
+  --on-green-soft: #b9cfc3;
+  --card: #ffffff;
+  --shadow: 0 1px 2px rgb(19 38 30 / .06), 0 12px 32px -12px rgb(19 38 30 / .22);
+
+  --f-display: "Noto Kufi Arabic", "IBM Plex Sans Arabic", Tahoma, sans-serif;
+  --f-body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+
+  --s1: .25rem; --s2: .5rem; --s3: .75rem; --s4: 1rem; --s5: 1.5rem; --s6: 2rem; --s7: 3rem; --s8: 4.5rem;
+  --radius: 10px;
+  --wrap: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1a15; --paper-2: #14231c; --ink: #e9eee9; --ink-soft: #a9b8b0; --rule: #263a30;
+    --green: #0d6e4a; --green-deep: #0a2c20; --gold: #d8b75e; --gold-soft: #3a3220;
+    --on-green: #f1efe6; --on-green-soft: #a7c2b4; --card: #17271f;
+    --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 16px 36px -14px rgb(0 0 0 / .6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1a15; --paper-2: #14231c; --ink: #e9eee9; --ink-soft: #a9b8b0; --rule: #263a30;
+  --green: #0d6e4a; --green-deep: #0a2c20; --gold: #d8b75e; --gold-soft: #3a3220;
+  --on-green: #f1efe6; --on-green-soft: #a7c2b4; --card: #17271f;
+  --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 16px 36px -14px rgb(0 0 0 / .6);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 1.0625rem/1.75 var(--f-body);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.35; margin: 0; text-wrap: balance; }
+h1 { font-weight: 800; font-size: clamp(2rem, 4.6vw, 3.25rem); }
+h2 { font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.25rem); }
+h3 { font-weight: 600; font-size: 1.15rem; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+.latin { font-family: var(--f-mono); direction: ltr; unicode-bidi: isolate; font-size: .92em; }
+.num { font-variant-numeric: tabular-nums; }
+
+.band { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: var(--wrap); margin-inline: auto; }
+.section { padding-block: var(--s8); }
+.eyebrow { font: 500 .8rem/1.4 var(--f-body); letter-spacing: .04em; color: var(--gold); }
+.lede { color: var(--ink-soft); max-width: 60ch; font-size: 1.1rem; }
+
+/* Header */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--green-deep); }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--green-deep); color: var(--on-green); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--s4); padding-block: var(--s3); }
+.brand { display: flex; align-items: center; gap: var(--s3); text-decoration: none; }
+.brand img { width: 36px; height: 36px; border-radius: 8px; }
+.brand b { font: 800 1.35rem/1 var(--f-display); }
+.brand span { font: 500 .8rem/1 var(--f-mono); color: var(--on-green-soft); }
+.nav { display: flex; align-items: center; gap: var(--s5); font-size: .95rem; }
+.nav a { text-decoration: none; color: var(--on-green-soft); }
+.nav a:hover { color: var(--on-green); }
+@media (max-width: 720px) { .nav a:not(.btn) { display: none; } }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s2); padding: .7rem 1.3rem; border-radius: 999px; font: 600 1rem/1.2 var(--f-body); text-decoration: none; border: 1.5px solid transparent; cursor: pointer; transition: transform .15s ease, background-color .15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn-gold { background: var(--gold); color: #1d1608; }
+.btn-ghost { border-color: currentColor; color: inherit; background: transparent; }
+.btn-green { background: var(--green); color: var(--on-green); }
+.btn[aria-disabled="true"] { opacity: .55; cursor: default; transform: none; }
+.top .btn { padding: .5rem 1rem; font-size: .9rem; }
+
+/* Hero */
+.hero { background: var(--green-deep); color: var(--on-green); overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: var(--s7); align-items: center; padding-block: var(--s7) var(--s8); }
+.hero h1 em { font-style: normal; color: var(--gold); }
+.hero .lede { color: var(--on-green-soft); margin-top: var(--s4); }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s6); }
+.hero-note { margin-top: var(--s4); font-size: .9rem; color: var(--on-green-soft); }
+.facts { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); margin-top: var(--s6); padding: 0; list-style: none; font-size: .92rem; color: var(--on-green-soft); }
+.facts li::before { content: "✓"; color: var(--gold); margin-inline-end: var(--s2); }
+
+/* The invoice, annotated */
+.specimen { position: relative; min-width: 0; }
+.sheet { background: #fff; border-radius: 6px; box-shadow: 0 30px 60px -20px rgb(0 0 0 / .55); transform: rotate(-1.2deg); overflow: hidden; }
+.sheet img { display: block; width: 100%; height: auto; }
+.tag { position: absolute; display: flex; align-items: center; gap: var(--s2); background: var(--gold); color: #1d1608; font: 600 .78rem/1.3 var(--f-body); padding: .35rem .7rem; border-radius: 999px; box-shadow: 0 6px 16px -6px rgb(0 0 0 / .5); white-space: nowrap; }
+.tag i { font: 500 .72rem/1 var(--f-mono); font-style: normal; background: #1d1608; color: var(--gold); border-radius: 999px; padding: .2rem .4rem; }
+.tag-qr { top: 4%; left: -3%; }
+.tag-ar { top: 28%; right: -3%; }
+.tag-total { bottom: 14%; right: 8%; }
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .specimen { max-width: 520px; margin-inline: auto; width: 100%; }
+  .tag-qr { left: 2%; } .tag-ar { right: 2%; }
+}
+
+/* Two phases */
+.phases { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); margin-top: var(--s6); }
+.phase { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--s6); display: flex; flex-direction: column; gap: var(--s4); min-width: 0; }
+.phase.pro { border-color: var(--green); box-shadow: inset 0 4px 0 var(--green); }
+.phase-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s3); flex-wrap: wrap; }
+.pill { font: 600 .78rem/1 var(--f-body); padding: .35rem .7rem; border-radius: 999px; background: var(--paper-2); color: var(--ink-soft); }
+.pro .pill { background: var(--green); color: var(--on-green); }
+.phase ul { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s3); }
+.phase li { display: grid; grid-template-columns: 1.2rem 1fr; gap: var(--s2); }
+.phase li::before { content: ""; width: .55rem; height: .55rem; margin-top: .65rem; border-radius: 2px; background: var(--gold); }
+.pro li::before { background: var(--green); }
+.phase .when { margin-top: auto; padding-top: var(--s4); border-top: 1px dashed var(--rule); font-size: .93rem; color: var(--ink-soft); }
+@media (max-width: 820px) { .phases { grid-template-columns: 1fr; } }
+
+/* QR anatomy */
+.qr-band { background: var(--paper-2); }
+.qr-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: var(--s7); align-items: start; }
+.tlv { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); overflow-x: auto; }
+.tlv table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.tlv th, .tlv td { text-align: start; padding: .75rem 1rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.tlv th { font: 500 .78rem/1.4 var(--f-body); color: var(--ink-soft); background: var(--paper-2); }
+.tlv tr:last-child td { border-bottom: 0; }
+.tlv td:first-child { font: 500 .95rem/1.4 var(--f-mono); color: var(--green); width: 3.5rem; text-align: center; }
+.tlv .ex { font: 400 .85rem/1.5 var(--f-mono); color: var(--ink-soft); direction: ltr; unicode-bidi: isolate; white-space: nowrap; }
+.tlv tr.p2 td { background: color-mix(in srgb, var(--green) 7%, transparent); }
+.tlv tr.p2 td:first-child { color: var(--gold); }
+.tlv-key { display: flex; gap: var(--s5); flex-wrap: wrap; margin-top: var(--s3); font-size: .85rem; color: var(--ink-soft); }
+.tlv-key span::before { content: ""; display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-inline-end: var(--s2); vertical-align: -1px; background: var(--card); border: 1px solid var(--rule); }
+.tlv-key span.k2::before { background: color-mix(in srgb, var(--green) 20%, var(--card)); }
+@media (max-width: 900px) { .qr-grid { grid-template-columns: 1fr; gap: var(--s6); } }
+
+/* Onboarding sequence (a real order of steps) */
+.steps { counter-reset: step; display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--s4); margin: var(--s6) 0 0; padding: 0; list-style: none; }
+.steps li { counter-increment: step; position: relative; padding-top: var(--s6); min-width: 0; }
+.steps li::before { content: counter(step); position: absolute; top: 0; inset-inline-start: 0; width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; font: 600 .95rem/1 var(--f-mono); background: var(--green); color: var(--on-green); }
+.steps li::after { content: ""; position: absolute; top: 1rem; inset-inline-start: 2.5rem; inset-inline-end: -.5rem; border-top: 1px dashed var(--rule); }
+.steps li:last-child::after { display: none; }
+.steps h3 { font-size: 1rem; margin-top: var(--s3); }
+.steps p { font-size: .93rem; color: var(--ink-soft); margin-top: var(--s1); }
+@media (max-width: 900px) {
+  .steps { grid-template-columns: 1fr; gap: var(--s5); }
+  .steps li { padding-top: 0; padding-inline-start: 3rem; }
+  .steps li::after { display: none; }
+  .steps h3 { margin-top: .2rem; }
+}
+.shots { display: grid; grid-template-columns: 1.15fr .85fr; gap: var(--s5); margin-top: var(--s7); align-items: start; }
+.shots figure { margin: 0; min-width: 0; }
+.shots img { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid var(--rule); box-shadow: var(--shadow); background: #fff; }
+.shots figcaption { margin-top: var(--s3); font-size: .9rem; color: var(--ink-soft); }
+@media (max-width: 820px) { .shots { grid-template-columns: 1fr; } }
+
+/* Assurances */
+.trust { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s6); margin-top: var(--s6); }
+.trust div { border-top: 2px solid var(--green); padding-top: var(--s4); min-width: 0; }
+.trust p { color: var(--ink-soft); margin-top: var(--s2); font-size: .97rem; }
+@media (max-width: 820px) { .trust { grid-template-columns: 1fr; gap: var(--s5); } }
+
+/* Pricing */
+.price-band { background: var(--green-deep); color: var(--on-green); }
+.price-band .lede { color: var(--on-green-soft); }
+.price-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: var(--s5); margin-top: var(--s6); align-items: stretch; }
+.plan { border-radius: var(--radius); padding: var(--s6); display: flex; flex-direction: column; gap: var(--s4); min-width: 0; }
+.plan-free { border: 1px solid rgb(255 255 255 / .18); }
+.plan-pro { background: var(--paper); color: var(--ink); box-shadow: var(--shadow); }
+.plan .amount { font: 800 2.6rem/1 var(--f-display); }
+.plan .amount small { font: 500 1rem/1 var(--f-body); color: var(--ink-soft); }
+.plan-free .amount small { color: var(--on-green-soft); }
+.plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s2); font-size: .97rem; }
+.plan li::before { content: "✓"; margin-inline-end: var(--s2); color: var(--gold); }
+.plan-pro li::before { color: var(--green); }
+.plan .btn { margin-top: auto; }
+.controls { display: flex; flex-wrap: wrap; gap: var(--s4); align-items: center; justify-content: space-between; }
+.seg { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--paper-2); border: 1px solid var(--rule); }
+.seg button { border: 0; background: transparent; color: var(--ink-soft); font: 500 .9rem/1 var(--f-body); padding: .55rem .95rem; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--green); color: var(--on-green); }
+.price-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s2) var(--s4); }
+.save { font-size: .9rem; color: var(--green); font-weight: 600; }
+.coupon { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s3); align-items: center; padding: var(--s3) var(--s4); background: var(--gold-soft); border-radius: 8px; font-size: .92rem; }
+.coupon code { font: 600 .95rem/1 var(--f-mono); background: var(--card); border: 1px dashed var(--gold); padding: .3rem .55rem; border-radius: 5px; direction: ltr; }
+.fine { font-size: .85rem; color: var(--ink-soft); }
+.plan-free .fine { color: var(--on-green-soft); }
+.soon { font-size: .88rem; color: var(--ink-soft); text-align: center; }
+@media (max-width: 820px) { .price-grid { grid-template-columns: 1fr; } .plan-pro { order: -1; } }
+
+/* FAQ */
+.faq { display: grid; gap: 0; margin-top: var(--s6); max-width: 820px; }
+.faq details { border-bottom: 1px solid var(--rule); }
+.faq summary { cursor: pointer; list-style: none; padding: var(--s4) 0; font: 600 1.05rem/1.5 var(--f-body); display: flex; justify-content: space-between; gap: var(--s4); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font: 400 1.4rem/1 var(--f-mono); color: var(--green); }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { padding-bottom: var(--s4); color: var(--ink-soft); max-width: 68ch; }
+
+/* Footer */
+.foot { border-top: 1px solid var(--rule); }
+.foot .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--s6); padding-block: var(--s7); font-size: .93rem; color: var(--ink-soft); }
+.foot h3 { color: var(--ink); font-size: 1rem; margin-bottom: var(--s2); }
+.foot ul { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s1); }
+@media (max-width: 720px) { .foot .wrap { grid-template-columns: 1fr; } }
+</style>
+
+</head>
+<body>
+<div dir="rtl" lang="ar">
+
+<header class="top band">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="سند">
+      <img src="icon.png" alt="" width="36" height="36">
+      <b>سند</b><span>Sanad</span>
+    </a>
+    <nav class="nav" aria-label="روابط الصفحة">
+      <a href="#phases">المزايا</a>
+      <a href="#qr">رمز QR</a>
+      <a href="#pricing">الأسعار</a>
+      <a href="#faq">الأسئلة الشائعة</a>
+      <a class="btn btn-gold js-free" href="#pricing">ابدأ مجانًا</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero band" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">إضافة WooCommerce · متوافقة مع هيئة الزكاة والضريبة والجمارك</p>
+      <h1 style="margin-top: var(--s3)">كل طلب في متجرك يصدر <em>بفاتورة إلكترونية</em> نظامية.</h1>
+      <p class="lede">سند يصدر الفاتورة الضريبية المبسطة لكل طلب مدفوع في WooCommerce، بالعربي والإنجليزي مع رمز QR. وعندما يحين موعد ربط منشأتك، يربط متجرك مباشرة بمنصة فاتورة ويبلّغ عن كل فاتورة تلقائيًا.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold js-free" href="#pricing">حمّل النسخة المجانية</a>
+        <a class="btn btn-ghost" href="#pricing">أسعار سند Pro</a>
+      </div>
+      <ul class="facts">
+        <li>تعمل على موقعك، بلا خادم وسيط</li>
+        <li>عربية بالكامل</li>
+        <li>متوافقة مع HPOS والدفع بالكتل</li>
+      </ul>
+    </div>
+    <figure class="specimen" aria-label="نموذج فاتورة ضريبية مبسطة صادرة من سند">
+      <div class="sheet"><img src="invoice.webp" alt="فاتورة ضريبية مبسطة صادرة من سند: رمز QR، بيانات البائع، بنود الطلب، الضريبة 15% والإجمالي" width="860" height="800"></div>
+      <span class="tag tag-qr"><i>QR</i> بيانات الفاتورة مشفّرة</span>
+      <span class="tag tag-ar"><i>AR</i> عربي أولًا، وتحته الإنجليزي</span>
+      <span class="tag tag-total"><i>15%</i> الضريبة لكل بند وللإجمالي</span>
+    </figure>
+  </div>
+</section>
+
+<section class="section band" id="phases">
+  <div class="wrap">
+    <p class="eyebrow">مرحلتان، إضافة واحدة</p>
+    <h2 style="margin-top: var(--s2)">ابدأ بالإصدار اليوم، وأضف الربط عندما تصل موجتك.</h2>
+    <p class="lede" style="margin-top: var(--s3)">تُدخل الهيئة المنشآت في مرحلة الربط والتكامل على موجات حسب الإيرادات، وتبلّغ كل منشأة قبل موعدها بستة أشهر على الأقل. إلى أن يصلك الإشعار، تكفيك النسخة المجانية.</p>
+
+    <div class="phases">
+      <article class="phase">
+        <div class="phase-head"><h3>المرحلة الأولى: الإصدار</h3><span class="pill">مجانية</span></div>
+        <ul>
+          <li>فاتورة ضريبية مبسطة لكل طلب مدفوع، بصيغة PDF ثنائية اللغة.</li>
+          <li>رمز QR على كل فاتورة: اسم البائع، الرقم الضريبي، وقت الإصدار، الإجمالي والضريبة.</li>
+          <li>إشعار دائن تلقائي عند استرداد الطلب، وإشعار مدين للمبالغ الإضافية من صفحة الطلب.</li>
+          <li>الفاتورة مرفقة برسائل الطلب والاسترداد، وروابط تحميل في صفحة الشكر وحسابي ولوحة التحكم.</li>
+          <li>ترقيم تسلسلي ببادئات تختارها.</li>
+        </ul>
+        <p class="when">مناسبة لكل منشأة مسجلة في ضريبة القيمة المضافة لم يصلها إشعار الربط بعد.</p>
+      </article>
+      <article class="phase pro">
+        <div class="phase-head"><h3>المرحلة الثانية: الربط والتكامل</h3><span class="pill">سند Pro</span></div>
+        <ul>
+          <li>ربط بخطوة واحدة: أدخل رمز OTP من بوابة فاتورة، وسند يكمل الباقي حتى شهادة الإنتاج.</li>
+          <li>كل فاتورة بصيغة XML موقّعة (UBL 2.1) مع سلسلة التجزئة والعدّاد اللذين تشترطهما الهيئة.</li>
+          <li>الفواتير المبسطة تُبلَّغ تلقائيًا خلال مهلة 24 ساعة، مع إعادة المحاولة إن تعطلت المنصة.</li>
+          <li>الفواتير الضريبية للشركات (B2B): حقول الرقم الضريبي في صفحة الدفع، واعتماد الفاتورة من الهيئة قبل إرسالها للعميل.</li>
+          <li>شاشة مستندات بحالة كل فاتورة، ومستند تصحيحي بنقرة عند الرفض، وتجديد الشهادة دون فصل المتجر.</li>
+        </ul>
+        <p class="when">لمن وصله إشعار الهيئة بموعد الربط. يمكنك التجربة على بيئة المحاكاة أولًا.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section band qr-band" id="qr">
+  <div class="wrap qr-grid">
+    <div>
+      <p class="eyebrow">ما بداخل رمز QR</p>
+      <h2 style="margin-top: var(--s2)">الرمز الذي يقرؤه تطبيق الهيئة.</h2>
+      <p class="lede" style="margin-top: var(--s3)">رمز QR في الفاتورة ليس رابطًا. هو بيانات الفاتورة نفسها مرمّزة بصيغة TLV ثم Base64. يكتب سند الحقول الخمسة في المرحلة الأولى، ويضيف الحقول الأربعة الخاصة بالتوقيع في المرحلة الثانية.</p>
+      <div class="tlv-key"><span>المرحلة الأولى</span><span class="k2">تُضاف في سند Pro</span></div>
+    </div>
+    <div class="tlv">
+      <table>
+        <thead><tr><th>الوسم</th><th>الحقل</th><th>مثال</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>اسم البائع</td><td class="ex" style="direction: rtl">متجر تجريبي</td></tr>
+          <tr><td>2</td><td>الرقم الضريبي للبائع</td><td class="ex">399999999900003</td></tr>
+          <tr><td>3</td><td>تاريخ ووقت الفاتورة</td><td class="ex">2026-11-20T18:16:19</td></tr>
+          <tr><td>4</td><td>الإجمالي شامل الضريبة</td><td class="ex">57.50</td></tr>
+          <tr><td>5</td><td>إجمالي الضريبة</td><td class="ex">7.50</td></tr>
+          <tr class="p2"><td>6</td><td>تجزئة XML الفاتورة</td><td class="ex">SHA-256</td></tr>
+          <tr class="p2"><td>7</td><td>التوقيع الرقمي</td><td class="ex">ECDSA</td></tr>
+          <tr class="p2"><td>8</td><td>المفتاح العام</td><td class="ex">secp256k1</td></tr>
+          <tr class="p2"><td>9</td><td>توقيع الشهادة من الهيئة</td><td class="ex">X.509</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section band" id="connect">
+  <div class="wrap">
+    <p class="eyebrow">الربط مع منصة فاتورة في سند Pro</p>
+    <h2 style="margin-top: var(--s2)">من رمز OTP إلى أول فاتورة مبلَّغ عنها.</h2>
+    <ol class="steps">
+      <li><h3>رمز OTP</h3><p>من بوابة فاتورة: «تسجيل وحدة حلول جديدة»، ثم تلصقه في سند.</p></li>
+      <li><h3>المفتاح وطلب الشهادة</h3><p>ينشئ سند مفتاح التوقيع وطلب الشهادة على موقعك.</p></li>
+      <li><h3>شهادة الامتثال</h3><p>يحصل على شهادة الامتثال ويجتاز فحوصات الهيئة تلقائيًا.</p></li>
+      <li><h3>شهادة الإنتاج</h3><p>يطلب شهادة الإنتاج، ويحفظ المفتاح السري مشفّرًا.</p></li>
+      <li><h3>التبليغ</h3><p>كل فاتورة بعدها تُوقَّع وتُرسل للهيئة دون تدخل منك.</p></li>
+    </ol>
+    <div class="shots">
+      <figure>
+        <img src="documents.webp" alt="شاشة المستندات في سند: رقم كل مستند ونوعه وحالته" width="1120" height="350">
+        <figcaption>شاشة المستندات: حالة كل فاتورة وإشعار، والـ XML الموقّع، وإعادة الإرسال.</figcaption>
+      </figure>
+      <figure>
+        <img src="order-box.webp" alt="صندوق الفاتورة الإلكترونية في صفحة الطلب مع نموذج الإشعار المدين" width="1120" height="631">
+        <figcaption>صندوق الفاتورة في صفحة الطلب، ومنه يصدر الإشعار المدين.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section band" style="padding-top: 0">
+  <div class="wrap">
+    <h2>مصمَّم لما تشترطه الهيئة، لا أكثر ولا أقل.</h2>
+    <div class="trust">
+      <div><h3>بياناتك تبقى عندك</h3><p>سند يعمل بالكامل على موقعك. في المرحلة الثانية يتصل بمنصة فاتورة فقط، ولا تمر فواتيرك على أي خادم آخر.</p></div>
+      <div><h3>إن تعطلت المنصة</h3><p>تصدر الفاتورة وتصل العميل في وقتها، ويُعاد إرسالها تلقائيًا. وتنبيه في لوحة التحكم إن لم تُبلَّغ خلال 12 ساعة، قبل مهلة 24 ساعة بوقت كافٍ.</p></div>
+      <div><h3>لا تعديل على فاتورة صادرة</h3><p>الهيئة لا تسمح بتعديل الفاتورة الإلكترونية بعد إصدارها، وسند يلتزم بذلك: التصحيح يكون بإشعار دائن أو مدين.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section band price-band" id="pricing">
+  <div class="wrap">
+    <p class="eyebrow">الأسعار</p>
+    <h2 style="margin-top: var(--s2)">مجانية للإصدار. اشتراك واحد للربط.</h2>
+    <p class="lede" style="margin-top: var(--s3)">الأسعار بالدولار الأمريكي. الترخيص لكل موقع ووردبريس، ويشمل كل مزايا المرحلة الثانية والتحديثات والدعم.</p>
+
+    <div class="price-grid">
+      <article class="plan plan-free">
+        <h3>سند</h3>
+        <p class="amount">0 <small>دائمًا</small></p>
+        <ul>
+          <li>المرحلة الأولى كاملة</li>
+          <li>فواتير وإشعارات دائنة ومدينة</li>
+          <li>PDF عربي إنجليزي مع رمز QR</li>
+          <li>مرفقة برسائل العملاء</li>
+        </ul>
+        <a class="btn btn-gold js-free" href="#pricing">حمّل من WordPress.org</a>
+        <p class="fine js-free-note">قيد المراجعة في مكتبة إضافات ووردبريس، وتتوفر قريبًا.</p>
+      </article>
+
+      <article class="plan plan-pro" aria-labelledby="pro-title">
+        <div class="controls">
+          <h3 id="pro-title">سند Pro</h3>
+          <div class="seg" role="group" aria-label="مدة الاشتراك">
+            <button type="button" id="cycle-annual" data-cycle="annual" aria-pressed="true">سنوي</button>
+            <button type="button" id="cycle-monthly" data-cycle="monthly" aria-pressed="false">شهري</button>
+          </div>
+        </div>
+        <div class="seg" role="group" aria-label="عدد المواقع" style="align-self: flex-start">
+          <button type="button" id="sites-1" data-sites="1" aria-pressed="true">موقع واحد</button>
+          <button type="button" id="sites-3" data-sites="3" aria-pressed="false">3 مواقع</button>
+          <button type="button" id="sites-10" data-sites="10" aria-pressed="false">10 مواقع</button>
+        </div>
+        <div class="price-line">
+          <p class="amount num"><span id="price">$129</span> <small id="per">في السنة</small></p>
+          <span class="save" id="save">توفّر $39 مقارنة بالشهري</span>
+        </div>
+        <div class="coupon" id="coupon">
+          <span>عرض الإطلاق: خصم $30 على أول سنة لموقع واحد، بالكود</span>
+          <code>EARLY99</code>
+          <span class="fine">للعملاء الجدد حتى 1 فبراير 2027.</span>
+        </div>
+        <ul>
+          <li>كل ما في النسخة المجانية</li>
+          <li>الربط مع منصة فاتورة والتبليغ والاعتماد</li>
+          <li>فواتير الشركات (B2B) وحقولها في صفحة الدفع</li>
+          <li>مستندات تصحيحية وتجديد الشهادة</li>
+          <li>بيئة المطورين والمحاكاة للتجربة</li>
+        </ul>
+        <a class="btn btn-green" id="buy" href="#pricing">اشترك في سند Pro</a>
+        <p class="fine">عند انتهاء الترخيص يستمر متجرك المربوط في التبليغ للهيئة كالمعتاد، وتتوقف التحديثات والدعم فقط. الدفع عبر Freemius.</p>
+        <p class="soon" id="buy-note">يُفتح الاشتراك قريبًا.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section band" id="faq">
+  <div class="wrap">
+    <h2>الأسئلة الشائعة</h2>
+    <div class="faq">
+      <details><summary>متى أحتاج المرحلة الثانية؟</summary><p>عندما يصلك إشعار الهيئة بموعد ربط منشأتك. تُدخل الهيئة المنشآت على موجات حسب الإيرادات، وتبلّغ كل منشأة قبل موعدها بستة أشهر على الأقل. قبل ذلك تكفيك النسخة المجانية.</p></details>
+      <details><summary>هل تمر بيانات فواتيري على خوادمكم؟</summary><p>لا. سند يعمل بالكامل على موقعك. في المرحلة الثانية يتصل بمنصة فاتورة التابعة للهيئة فقط.</p></details>
+      <details><summary>ماذا يحدث إن تعطلت منصة فاتورة؟</summary><p>تصدر الفاتورة وتُرسل للعميل كالمعتاد، ويُعاد إرسالها للهيئة تلقائيًا. ويظهر لك تنبيه إن لم تُبلَّغ خلال 12 ساعة، أي قبل انتهاء مهلة 24 ساعة للفواتير المبسطة.</p></details>
+      <details><summary>هل أستطيع تعديل فاتورة أو حذفها بعد إصدارها؟</summary><p>لا، وهذا مقصود: الهيئة لا تسمح بتعديل الفاتورة الإلكترونية الصادرة. التصحيح يكون بإشعار دائن (باسترداد الطلب في WooCommerce) أو بإشعار مدين.</p></details>
+      <details><summary>متى تصدر فاتورة ضريبية بدل المبسطة؟</summary><p>في سند Pro، عند تفعيل فواتير الشركات، العميل الذي يُدخل رقمًا ضريبيًا صحيحًا وعنوانًا سعوديًا كاملًا في صفحة الدفع تصدر له فاتورة ضريبية تعتمدها الهيئة قبل إرسالها إليه. وإن نقصت البيانات تصدر فاتورة مبسطة مع ملاحظة في الطلب توضح السبب.</p></details>
+      <details><summary>ما متطلبات التشغيل؟</summary><p>ووردبريس 6.4 أو أحدث، و WooCommerce 8.0 أو أحدث بالريال السعودي ونسبة ضريبة 15%، و PHP 8.0 أو أحدث مع إضافات OpenSSL و DOM و mbstring و GD. للمرحلة الثانية يلزم دعم OpenSSL لمنحنى secp256k1، وشاشة «فحص النظام» في سند تختبر ذلك.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer class="foot band">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top" style="color: var(--ink)"><img src="icon.png" alt="" width="36" height="36"><b>سند</b></a>
+      <p style="margin-top: var(--s3); max-width: 46ch">إضافة ووردبريس للفوترة الإلكترونية لمتاجر WooCommerce في المملكة العربية السعودية. مرخصة بموجب GPL.</p>
+    </div>
+    <div>
+      <h3>روابط</h3>
+      <ul>
+        <li><a href="https://zatca.gov.sa/ar/E-Invoicing/Pages/default.aspx" rel="noopener">الفوترة الإلكترونية على موقع الهيئة</a></li>
+        <li><a href="https://fatoora.zatca.gov.sa/" rel="noopener">بوابة فاتورة</a></li>
+        <li><a href="#faq">الأسئلة الشائعة</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+// Flip these when the plugin is live on WordPress.org and the Freemius plans are released.
+const FREE_URL = null;            // "https://wordpress.org/plugins/sanad/"
+const SALES_OPEN = false;
+const CHECKOUT = "https://checkout.freemius.com/plugin/45742/plan/80562/";
+const PRICES = { annual: { 1: 129, 3: 199, 10: 399 }, monthly: { 1: 14, 3: 22, 10: 44 } };
+
+const state = { cycle: "annual", sites: 1 };
+const $ = (s) => document.querySelector(s);
+
+function render() {
+  const p = PRICES[state.cycle][state.sites];
+  $("#price").textContent = "$" + p;
+  $("#per").textContent = state.cycle === "annual" ? "في السنة" : "في الشهر";
+  const saving = PRICES.monthly[state.sites] * 12 - PRICES.annual[state.sites];
+  $("#save").textContent = state.cycle === "annual" ? "توفّر $" + saving + " مقارنة بالشهري" : "السنوي يوفّر $" + saving;
+  $("#coupon").hidden = !(state.cycle === "annual" && state.sites === 1);
+  document.querySelectorAll("[data-cycle]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cycle === state.cycle)));
+  document.querySelectorAll("[data-sites]").forEach((b) => b.setAttribute("aria-pressed", String(Number(b.dataset.sites) === state.sites)));
+
+  const buy = $("#buy");
+  if (SALES_OPEN) {
+    const q = new URLSearchParams({ billing_cycle: state.cycle, licenses: String(state.sites) });
+    if (state.cycle === "annual" && state.sites === 1) q.set("coupon", "EARLY99");
+    buy.href = CHECKOUT + "?" + q;
+    buy.target = "_blank";
+    buy.rel = "noopener";
+    buy.removeAttribute("aria-disabled");
+    $("#buy-note").hidden = true;
+  } else {
+    buy.setAttribute("aria-disabled", "true");
+  }
+}
+
+document.querySelectorAll("[data-cycle]").forEach((b) => b.addEventListener("click", () => { state.cycle = b.dataset.cycle; render(); }));
+document.querySelectorAll("[data-sites]").forEach((b) => b.addEventListener("click", () => { state.sites = Number(b.dataset.sites); render(); }));
+$("#buy").addEventListener("click", (e) => { if (!SALES_OPEN) e.preventDefault(); });
+
+if (FREE_URL) {
+  document.querySelectorAll(".js-free").forEach((a) => { a.href = FREE_URL; a.target = "_blank"; a.rel = "noopener"; });
+  const note = $(".js-free-note"); if (note) note.hidden = true;
+}
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eslamelfar000.github.io/qirtas/sitemap.xml

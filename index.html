@@ -7,6 +7,30 @@
 <title>قرطاس للفوترة الإلكترونية</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="قرطاس: فواتير إلكترونية متوافقة مع هيئة الزكاة والضريبة والجمارك لمتاجر WooCommerce. المرحلة الأولى مجانًا، والربط والتكامل مع منصة فاتورة في قرطاس Pro.">
+<!--seo-->
+<link rel="canonical" href="https://eslamelfar000.github.io/qirtas/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:site_name" content="قرطاس">
+<meta property="og:title" content="قرطاس: الفوترة الإلكترونية لمتاجر WooCommerce (المرحلة الأولى والثانية)">
+<meta property="og:description" content="فاتورة إلكترونية ورمز QR لكل طلب، مجانًا. والربط مع منصة فاتورة للموجة 25 قبل 1 فبراير 2027 في قرطاس Pro.">
+<meta property="og:url" content="https://eslamelfar000.github.io/qirtas/">
+<meta property="og:image" content="https://eslamelfar000.github.io/qirtas/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eslamelfar000.github.io/qirtas/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","name":"Qirtas – قرطاس","alternateName":"Qirtas Saudi E-Invoicing for WooCommerce","applicationCategory":"BusinessApplication","operatingSystem":"WordPress, WooCommerce","inLanguage":["ar","en"],"url":"https://eslamelfar000.github.io/qirtas/","downloadUrl":"https://wordpress.org/plugins/qirtas-e-invoicing/","image":"https://eslamelfar000.github.io/qirtas/icon.png","description":"إضافة ووردبريس تصدر فواتير إلكترونية متوافقة مع هيئة الزكاة والضريبة والجمارك لمتاجر WooCommerce، وتربطها بمنصة فاتورة في المرحلة الثانية.","offers":[{"@type":"Offer","name":"قرطاس (مجاني)","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"قرطاس Pro – موقع واحد سنويًا","price":"129","priceCurrency":"USD"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"متى أحتاج المرحلة الثانية؟","acceptedAnswer":{"@type":"Answer","text":"عندما يصلك إشعار الهيئة بموعد ربط منشأتك. تُدخل الهيئة المنشآت على موجات حسب الإيرادات، وتبلّغ كل منشأة قبل موعدها بستة أشهر على الأقل. قبل ذلك تكفيك النسخة المجانية."}},
+{"@type":"Question","name":"هل تمر بيانات فواتيري على خوادمكم؟","acceptedAnswer":{"@type":"Answer","text":"لا. قرطاس يعمل بالكامل على موقعك. في المرحلة الثانية يتصل بمنصة فاتورة التابعة للهيئة فقط."}},
+{"@type":"Question","name":"ماذا يحدث إن تعطلت منصة فاتورة؟","acceptedAnswer":{"@type":"Answer","text":"تصدر الفاتورة وتُرسل للعميل كالمعتاد، ويُعاد إرسالها للهيئة تلقائيًا. ويظهر لك تنبيه إن لم تُبلَّغ خلال 12 ساعة، أي قبل انتهاء مهلة 24 ساعة للفواتير المبسطة."}},
+{"@type":"Question","name":"هل أستطيع تعديل فاتورة أو حذفها بعد إصدارها؟","acceptedAnswer":{"@type":"Answer","text":"لا، وهذا مقصود: الهيئة لا تسمح بتعديل الفاتورة الإلكترونية الصادرة. التصحيح يكون بإشعار دائن (باسترداد الطلب في WooCommerce) أو بإشعار مدين."}},
+{"@type":"Question","name":"ما متطلبات التشغيل؟","acceptedAnswer":{"@type":"Answer","text":"ووردبريس 6.4 أو أحدث، وWooCommerce 8.0 أو أحدث بالريال السعودي ونسبة ضريبة 15%، وPHP 8.0 أو أحدث مع OpenSSL وDOM وmbstring وGD."}}
+]}]}
+</script>
 <meta name="theme-color" content="#04150f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -692,7 +716,7 @@ footer { padding-block: 5rem 2.5rem; overflow: hidden; }
   <div class="wrap">
     <div class="foot-grid">
       <div><a class="brand" href="#top"><img src="icon.png" alt="" width="34" height="34"><b>قرطاس</b></a><p style="margin-top:1rem; max-width:40ch">إضافة ووردبريس للفوترة الإلكترونية لمتاجر WooCommerce في المملكة العربية السعودية. مرخصة بموجب GPL.</p></div>
-      <div><h4>الصفحة</h4><ul><li><a href="#journey">كيف يعمل</a></li><li><a href="#features">المزايا</a></li><li><a href="#pricing">الأسعار</a></li><li><a href="#faq">الأسئلة</a></li></ul></div>
+      <div><h4>الصفحة</h4><ul><li><a href="#journey">كيف يعمل</a></li><li><a href="#features">المزايا</a></li><li><a href="#pricing">الأسعار</a></li><li><a href="#faq">الأسئلة</a></li><li><a href="wave-25.html">دليل الموجة 25</a></li></ul></div>
       <div><h4>من الهيئة</h4><ul><li><a href="https://zatca.gov.sa/ar/E-Invoicing/Pages/default.aspx" rel="noopener">الفوترة الإلكترونية</a></li><li><a href="https://fatoora.zatca.gov.sa/" rel="noopener">بوابة فاتورة</a></li></ul></div>
     </div>
     <div class="wordmark" data-speed="-.12" aria-hidden="true">قرطاس</div>
